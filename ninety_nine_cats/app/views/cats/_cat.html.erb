@@ -1,0 +1,93 @@
+<% if template == :edit %>
+  
+
+  <h1>Update Cat in our Database</h1>
+  <% if @errors %>
+    <%= @errors %>
+  <% end %>
+  <form action="<%= cat_url(cat) %>" method="post">
+    <input type="hidden" name="_method" value="patch">
+    
+    <label for="birth_date"> Birth Date </label>
+    <input id='birth_date' type="date" name="cat[birth_date]" value="<%= cat.birth_date %>">
+    
+    <label for="name"> Name </label>
+    <input id='name' type="text" name="cat[name]" value="<%= cat.name %>">
+      
+    <label for="color"> Color </label>
+      <select name="cat[color]">
+        <% ["red", "black", "white", "spotted", "grey", "orange"].each do |color| %>
+        <% if cat.color == color %>
+          <option value="<%= color %>" selected> <%= color %> </option>
+        <% else %>
+          <option value="<%= color %>"> <%= color %></option>
+        <% end %>
+      <% end %>
+      </select>
+    <label for="sex"> Sex </label>
+    <% if cat.sex == "M" %>  
+      <input type="radio" id="catChoice1"name="cat[sex]" value="M" checked>
+      <label for="catChoice1">Male</label>
+      <input type="radio" id="catChoice2"
+       name="cat[sex]" value="F">
+      <label for="catChoice2">Female</label>
+    <% else  %>
+      <input type="radio" id="catChoice1"name="cat[sex]" value="M">
+      <label for="catChoice1">Male</label>
+      <input type="radio" id="catChoice2"
+       name="cat[sex]" value="F" checked>
+      <label for="catChoice2">Female</label>
+    <% end %>
+    
+    <br>
+    <br>
+    <label for="description"> Description </label>
+    <textarea id='description' type="text" name="cat[description]" rows="8" cols="80"> <%= cat.description %> </textarea>
+    
+  <input type="submit" value="Update Cat">
+  </form>
+
+<% else %>
+
+
+  <h1>Create Cat for our Database</h1>
+  <% if @errors %>
+  <%= @errors %>
+  <% end %>
+
+  <form action="<%= cats_url %>" method="post">
+    
+    <label for="birth_date"> Birth Date </label>
+    <input id='birth_date' type="date" name="cat[birth_date]" value="<%= @cat.birth_date %>">
+    
+    <label for="name"> Name </label>
+    <input id='name' type="text" name="cat[name]" value="<%= @cat.name %>">
+    
+    <label for="color"> Color </label>
+    <select name="cat[color]">
+      <option default=true value="red">Red</option>
+      <option value="orange">Orange</option>
+      <option value="black">Black</option>
+      <option value="white">White</option>
+      <option value="spotted">Spotted</option>
+      <option value="grey">Grey</option>
+    </select>
+    
+    <label for="sex"> Sex </label>
+    <!-- <input id='sex' type="text" name="cat[sex]" value="<%= @cat.sex %>"> -->
+    <input type="radio" id="catChoice1"
+       name="cat[sex]" value="M">
+      <label for="catChoice1">Male</label>
+
+      <input type="radio" id="catChoice2"
+       name="cat[sex]" value="F">
+      <label for="catChoice2">Female</label>
+    
+    <br>
+    <br>
+    <label for="description"> Description </label>
+    <textarea id='description' type="text" name="cat[description]" rows="8" cols="80"></textarea>
+    
+  <input type="submit" value="Add Cat">
+  </form>
+<% end %>

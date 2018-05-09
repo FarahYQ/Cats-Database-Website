@@ -1,0 +1,16 @@
+<h1>These are all our cats!</h1>
+<% @cats.each do |cat| %>
+
+<table>
+  <colgroup span="4"></colgroup>
+  <tr>
+    <th> <%= cat.name %></th>
+    <th><td><a href="<%= cat_url(cat)%>"> show </a></td></th>
+  </tr>
+  <tr>
+    <td><img src="http://placekitten.com/g/231/231"></td>
+    
+  </tr>
+</table>
+
+<% end %>
